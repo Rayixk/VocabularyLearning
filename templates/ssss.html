@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<p onclick="ck(this)">点击这里，播放音乐</p>
+
+<div id="player" style="width: 0px; height: 0px; position: absolute; top: -1111px;">
+    <audio id="music" preload="auto" volume="1"
+           src="https://dictionary.blob.core.chinacloudapi.cn/media/audio/tom/6e/7f/6E7F0665F20ED977CB7535AC8365196E.mp3">
+    </audio>
+</div>
+
+<script>
+    function ck(self) {
+        var music = document.getElementById('music');
+        music.play();
+    }
+
+    x="dread  困难"
+    var arr = x.split(" ")
+    console.log(arr[0])
+    console.log(arr[0].length)
+</script>
+
+</body>
+</html>

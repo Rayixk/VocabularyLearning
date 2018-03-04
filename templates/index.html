@@ -1,0 +1,243 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta content="width=device-width,user-scalable=no" name="viewport">
+    <title>Title</title>
+    {% load Mytag %}
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            background-color: #EEEEEE;
+        }
+
+        .header {
+            width: 100%;
+            height: 40px;
+            line-height: 40px;
+            text-align: center;
+        {#            font-weight: 600;#} font-size: 18px;
+            background-color: #FEFEFF;
+
+        }
+
+        .content_box {
+            width: 100%;
+        }
+
+        .footer_box {
+            width: 100%;
+        }
+
+        .footer {
+            height: 50px;
+            background-color: #FEFEFF;
+
+            margin: 15px;
+            border-radius: 10px;
+
+        }
+
+        .content {
+            margin: 15px;
+            height: 430px;
+            background-color: #FEFEFF;
+            border-radius: 10px;
+        }
+
+        .footer div {
+            width: 20%;
+            height: 50px;
+            background-color: #FEFEFF;
+            line-height: 50px;
+            text-align: center;
+            font-weight: 500;
+            font-size: 18px;
+        }
+
+        .yes {
+            float: right;
+            margin-right: 10%;
+        }
+
+        .no {
+            float: left;
+            margin-left: 10%;
+        }
+
+        .content div {
+            text-align: center;
+            background-color: #FEFEFF;
+
+        }
+
+        .content .word-word {
+            width: 100%;
+            height: 40px;
+            padding-top: 10px;
+            border-radius: 10px;
+        }
+
+        .content .word-word .word {
+            display: inline-block;
+            font-weight: 700;
+            font-size: 25px;
+            text-align: left !important;
+            margin-left: 5%;
+
+        }
+
+        .content .pater-word-about {
+            height: 370px;
+        }
+
+        .content .pater-word-about .word-about {
+            height: 100%;
+        }
+
+        .content .pater-word-about .word-about .meaning {
+            margin-bottom: 15px;
+            font-size: 16px;
+            height: 20px;
+            overflow: hidden;
+
+        }
+
+        .content .pater-word-about .word-about .memethod {
+            margin-bottom: 15px;
+            font-size: 16px;
+            height: 20px;
+            overflow: hidden;
+
+        }
+
+        .content .pater-word-about .word-about .image {
+            height: 200px;
+            text-align: center;
+        }
+
+        .content .pater-word-about .word-about .image img {
+            max-width: 280px;
+            max-height: 200px;
+            width: auto;
+        }
+
+        .hide {
+            display: none;
+        }
+
+        .icon {
+            height: 10px;
+            display: inline-block;
+
+        }
+
+        .icon img {
+            margin-left: 8%;
+            height: 100%;
+
+        }
+
+        .sentence {
+            padding: 10px 10px 10px 10px;
+            height: 80px;
+
+        }
+
+        .sentence div {
+            height: 40px;
+            font-size: 14px;
+            overflow: hidden;
+
+        }
+
+        .sentence .sentence-en {
+            padding: 0 5px;
+        }
+
+        .sentence .sentence-ch {
+            margin-top: 5px;
+            padding: 0 10px;
+        }
+    </style>
+</head>
+<body onload="ck()">
+
+<div class="header">Vocabulary Learning</div>
+<div class="content_box">
+    <div class="content">
+        <div class="word-word">
+            <div class="word">{{ word_obj.word }}</div>
+            <div class="icon" onclick="ck(this)">
+                <img src="{% static 'icon1.png' %}" alt="">
+            </div>
+        </div>
+
+        <div id="player" style="width: 0px; height: 0px; position: absolute; top: -1111px;">
+            <audio id="music" preload="auto" volume="1"
+                   src="{{ word_obj.upronun_url }}">
+            </audio>
+        </div>
+
+        <div class="pater-word-about" id="abc">
+            <div class="word-about hide">
+                <div class="meaning">{{ word_obj.meaning }}</div>
+                <div class="memethod">{{ word_obj.memory_method }}</div>
+                <div class="image">
+                    <img src="{% static word_obj.word|addpng:'.png' %}" alt="">
+                </div>
+                <div class="sentence">
+                    <div class="sentence-en">
+                        {% if sword %}
+                            {{ sword.sentence_en }}
+                        {% else %}
+                            none
+                        {% endif %}
+
+                    </div>
+
+                    <div class="sentence-ch">
+                        {% if sword %}
+                            {{ sword.sentence_ch }}
+                        {% else %}
+                            none
+                        {% endif %}
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="footer_box">
+    <div class="footer">
+        <a href="/no/{{ word_obj.id }}/">
+            <div class="no">no</div>
+        </a>
+        <a href="/ok/{{ word_obj.id }}/">
+            <div class="no">ok</div>
+        </a>
+        <a href="/yes/{{ word_obj.id }}/">
+            <div class="yes">yes</div>
+        </a>
+    </div>
+</div>
+
+<script>
+    var content = document.getElementById("abc");
+    content.onclick = function () {
+        this.lastElementChild.classList.remove("hide");
+        ck()
+    };
+
+    function ck() {
+        var music = document.getElementById('music');
+        music.play();
+    }
+
+</script>
+
+</body>
+</html>

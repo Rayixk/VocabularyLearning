@@ -1,0 +1,254 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<!-- saved from url=(0025)https://www.scaleway.com/ -->
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <style type="text/css">
+        [ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak, .ng-hide:not(.ng-hide-animate) {
+            display: none !important;
+        }
+
+        ng\:form {
+            display: block;
+        }
+
+        .ng-animate-shim {
+            visibility: hidden;
+        }
+
+        .ng-anchor {
+            position: absolute;
+        }
+
+        .navbar-brand {
+            height: 62px;
+            width: 140px;
+            background-size: cover;
+            margin: 19px 15px 0 5px;
+            padding: 0;
+        }
+
+        .top h3 {
+            color: #50285f !important;
+            font-weight: 900;
+        }
+
+        .my-btn-a {
+            margin-top: 5px !important;
+        }
+
+        .sentence-en {
+            height: 44px;
+            overflow: hidden;
+        }
+
+        .sentence-cn {
+            height: 44px;
+            overflow: hidden;
+        }
+
+        .my-container-p {
+            position: relative;
+        }
+
+        .shave {
+            position: absolute;
+            left: 5px;
+            top: 5px;
+            right: 5px;
+            bottom: 5px;
+            background-color: lightgrey;
+            opacity: 0.7;
+        }
+
+        .shave-1{
+            position: absolute;
+            left: 5px;
+            top: 83px;
+            right: 5px;
+            bottom: 5px;
+            background-color: lightgrey;
+            border-top: 0 solid #5c2d73 !important;
+        }
+
+        .signup-form {
+            background-color: transparent !important;
+            box-shadow: 0 11px 22px 0 rgba(92, 44, 115, .3);
+            border: 0 solid #5c2d73 !important;
+            text-align: right;
+            margin: 50px 0;
+            padding: 20px;
+        }
+    </style>
+    <link href="{% static 'assets/css' %}" rel="stylesheet">
+    <script type="text/javascript" async="" defer="" src="{% static 'assets/piwik.js' %}"></script>
+
+    <link rel="stylesheet" href="{% static 'assets/angular-ui-notification-d5.min.css' %}">
+
+    <link rel="stylesheet" href="{% static 'assets/angular-ui-switch-fc63.min.css' %}">
+
+    <link rel="stylesheet" href="{% static 'assets/style-e53.min.css' %}">
+    <script src="{% static 'js/jquery-3.2.1.js' %}"></script>
+    {% load Mytag %}
+
+</head>
+<body ng-app="wwwScalewayApp" class="ng-scope">
+<nav class="navbar">
+    <div class="container">
+        <img class="navbar-brand" src="{% static 'assets/logo.svg' %}" width="200px"
+             alt="Illustration Scaleway footer">
+        <div class="collapse navbar-collapse navbar-scaleway-collapse" id="navbar-scaleway-collapse">
+            <ul class="main-navbar nav navbar-nav navbar-center">
+                <li><a href="#">Pricing</a></li>
+                <li><a href="#">Support</a></li>
+                <li><a href="#">Developer</a></li>
+                <li><a href="/edit/">Edit</a></li>
+                <li><a href="#">Help</a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="https://blog.scaleway.com/" target="_blank">Blog</a></li>
+                <li><a href="#" target="_blank">Try it</a></li>
+                <li><a href="#" target="_blank">Log In</a></li>
+                <li><a href="signup" class="btn btn-default btn-signup" target="_blank">Sign
+                    up</a></li>
+
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<div id="player" style="width: 0px; height: 0px; position: absolute; top: -1111px;">
+    <audio id="music" preload="auto" volume="1"
+           src="">
+    </audio>
+</div>
+
+
+<div class="wrapper">
+    <div class="jumbotron jumbotron-home text-center"><h3 class="big-title">Don't let your dreams <br>just be dreams.
+    </h3>
+        <h2 class="big-title-desc">&nbsp;</h2>
+        <div class="container">
+            <div class="row bundle-container">
+                {% for word_obj,sword in word_list.items %}
+                    <div class="col-md-3 col-sm-6 col-xs-12 bundle bundle-pricing my-container-p">
+                        <div class="bundle-wrapper">
+                            <div class="top">
+                                <h3>{{ word_obj.word }}
+                                    <img onclick="ck(this)" style="height: 12px" src="{% static 'icon1.png' %}"
+                                         pronunciation="{{ word_obj.upronun_url }}" alt="">
+                                </h3>
+                                <div style="height:22px;overflow:hidden;margin: 5px 0 5px 0;padding: 0 20px 0 20px">{{ word_obj.meaning }}</div>
+                                <div style="margin-top: 5px;height:22px;padding: 0 20px 0 20px;overflow:hidden;margin-bottom: 8px">{{ word_obj.memory_method }}</div>
+                            </div>
+                            <div style="width: 280px;height: 200px;display: table-cell;vertical-align: middle">
+                                <img style="max-width: 240px;max-height: 200px;width: auto;"
+                                     src="{% static word_obj.word|addpng:'.png' %}" alt="">
+                            </div>
+                            <div class="specs sentence-en" style="padding-left: 10px;padding-right: 10px">
+                                {% if sword %}
+                                    {{ sword.sentence_en }}
+                                {% else %}
+                                    none
+                                {% endif %}
+                            </div>
+                            <div class="specs sentence-cn" style="padding-left: 10px;padding-right: 10px">
+                                {% if sword %}
+                                    {{ sword.sentence_ch }}
+                                {% else %}
+                                    none
+                                {% endif %}
+                            </div>
+                            <a href="javascript:void(0);" onclick="no(this)" word-id="{{ word_obj.id }}"
+                               class="btn btn-sm btn-default my-btn-a">&nbsp;&nbsp;&nbsp;No&nbsp;&nbsp;&nbsp;</a>
+                            <a href="javascript:void(0);" onclick="yes(this)" word-id="{{ word_obj.id }}"
+                               style="margin-left: 40px"
+                               class="btn btn-sm btn-default my-btn-a">&nbsp;&nbsp;&nbsp;Yes&nbsp;&nbsp;&nbsp;</a>
+                        </div>
+                        <div class="bundle-wrapper shave hide"></div>
+                        <div onclick="removeShove(this)" class="bundle-wrapper shave-1"></div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+        <!--next-->
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12 signup-form">
+                    <div class="form-inline ng-pristine ng-valid ng-scope ng-valid-email">
+                    {% if empty %}
+                        <div class="form-group col-sm-4 col-sm-offset-4">
+                            <button onclick="location.href='/retry/' " class="btn btn-primary">
+                                        done retry ?
+                            </button>
+                        </div>
+                    {% else %}
+                        <div class="form-group col-sm-4 col-sm-offset-8">
+                            <button onclick="location.href='/shownext/' " class="btn btn-primary">
+                                        next
+                                </button>
+                        </div>
+                    {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    var music = document.getElementById('music');
+    function ck(self) {
+        var url = self.getAttribute("pronunciation");
+        music.src = url;
+        music.play();
+    }
+
+    function no(self) {
+        var word_id = self.getAttribute("word-id");
+        $(self).parent().next().removeClass("hide");
+        //提交到后端
+        $.ajax({
+            url: "/reply/",
+            data: {
+                "statue": "no",
+                "word_id": word_id
+            },
+            success: function (data) {
+                console.log(data)
+            },
+            error: function (jqXHR, textStatus, err) {
+                alert(err);
+            }
+        })
+    }
+
+    function yes(self) {
+        var word_id = self.getAttribute("word-id");
+        $(self).parent().next().removeClass("hide");
+        //提交到后端
+        $.ajax({
+            url: "/reply/",
+            data: {
+                "statue": "yes",
+                "word_id": word_id
+            },
+            success: function (data) {
+                console.log(data)
+            },
+            error: function (jqXHR, textStatus, err) {
+                alert(err);
+            }
+        })
+    }
+
+    //移去遮罩
+    function removeShove(self) {
+        $(self).addClass("hide")
+    }
+
+</script>
+
+</body>
+</html>

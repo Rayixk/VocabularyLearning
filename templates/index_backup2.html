@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta content="width=device-width,user-scalable=no" name="viewport">
+    <title>Title</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            background-color: #EEEEEE;
+        }
+
+        .header {
+            width: 100%;
+            height: 40px;
+            line-height: 40px;
+            text-align: center;
+        {#            font-weight: 600;#} font-size: 18px;
+            background-color: #FEFEFF;
+
+        }
+
+        .content_box {
+            width: 100%;
+        }
+
+        .footer_box {
+            width: 100%;
+        }
+
+        .footer {
+            height: 50px;
+            background-color: #FEFEFF;
+
+            margin: 15px;
+            border-radius: 10px;
+
+        }
+
+        .content {
+            margin: 15px;
+            height: 430px;
+            background-color: #FEFEFF;
+            border-radius: 10px;
+        }
+
+        .footer div {
+            width: 30%;
+            height: 50px;
+            background-color: #FEFEFF;
+            line-height: 50px;
+            text-align: center;
+            font-weight: 500;
+            font-size: 18px;
+        }
+
+        .yes {
+            float: right;
+            margin-right: 10%;
+        }
+
+        .no {
+            float: left;
+            margin-left: 10%;
+        }
+
+        .content div {
+            text-align: center;
+            background-color: #FEFEFF;
+
+        }
+
+        .content .word-word {
+            width: 100%;
+            height: 40px;
+            padding-top: 10px;
+            border-radius: 10px;
+        }
+
+        .content .word-word .word {
+            display: inline-block;
+            font-weight: 700;
+            font-size: 25px;
+            text-align: left !important;
+            margin-left: 5%;
+
+
+        }
+
+        .content .word-about .meaning {
+            margin-bottom: 15px;
+            font-size: 16px;
+            height: 20px;
+            overflow: hidden;
+
+        }
+
+        .content .word-about {
+            height: 370px;
+        }
+
+        .content .word-about .memethod {
+            margin-bottom: 15px;
+            font-size: 16px;
+            height: 20px;
+            overflow: hidden;
+
+        }
+
+        .content .word-about .image{
+            height: 200px;
+            text-align: center;
+        }
+
+        .content .word-about .image img{
+            max-width:280px;
+            max-height: 200px;
+            width:auto;
+        }
+
+        .hide {
+            display: none;
+        }
+
+        .icon {
+            height: 10px;
+            display: inline-block;
+
+        }
+
+        .icon img {
+            margin-left: 8%;
+            height: 100%;
+
+        }
+        .sentence{
+            padding: 10px 10px 10px 10px;
+            height: 80px;
+
+        }
+
+        .sentence div{
+            height: 40px;
+            font-size: 14px;
+            overflow: hidden;
+        }
+        .sentence .sentence-ch{
+            margin-top: 5px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="header">Vocabulary Learning</div>
+<div class="content_box">
+    <div class="content" id="abc">
+        <div class="word-word">
+            <div class="word">ascend</div>
+            <div class="icon" onclick="ck(this)">
+                <img src="http://192.168.1.105:8000/source/icon1.png" alt="">
+            </div>
+        </div>
+
+        <div id="player" style="width: 0px; height: 0px; position: absolute; top: -1111px;">
+            <audio id="music" preload="auto" volume="1"
+                   src="https://dictionary.blob.core.chinacloudapi.cn/media/audio/tom/6e/7f/6E7F0665F20ED977CB7535AC8365196E.mp3">
+            </audio>
+        </div>
+
+        <div class="word-about">
+            <div class="meaning">[əˈsend]v.上升，登基</div>
+            <div class="memethod">scent-词根：攀登）</div>
+            <div class="image">
+                <img src="1tame.png" alt="">
+            </div>
+            <div class="sentence">
+                <div class="sentence-en">
+                    They move freely from one department to another as they ascend the civil service ladder.
+                </div>
+
+                <div class="sentence-ch">
+                    随着仕途晋升，他们可以在部门间随意调动。他们可以在部门间随意调动。
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+<div class="footer_box">
+    <div class="footer">
+        <a href="/no">
+            <div class="no">no</div>
+        </a>
+        <a href="/yes">
+            <div class="yes">yes</div>
+        </a>
+    </div>
+</div>
+
+<script>
+    var content = document.getElementById("abc");
+    content.onclick = function () {
+        this.lastElementChild.classList.remove("hide")
+    };
+
+    function ck(self) {
+        var music = document.getElementById('music');
+        music.play();
+    }
+
+</script>
+
+</body>
+</html>
