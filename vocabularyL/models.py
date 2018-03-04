@@ -72,6 +72,7 @@ class Vocabulary5500(models.Model):
     incorrect_times = models.IntegerField(blank=True, null=True)
     word_type = models.ForeignKey('Vocabularytype', models.DO_NOTHING, blank=True, null=True)
 
+
     class Meta:
         db_table = 'vocabulary5500'
 
@@ -92,6 +93,7 @@ class Vocabularycet4(models.Model):
                                    null=True)  # Field name made lowercase.
 
     is_first_time = models.CharField(max_length=16, blank=True, null=True)
+    score = models.IntegerField(blank=True, null=True)
 
     class Meta:
         db_table = 'vocabularycet4'
@@ -116,6 +118,7 @@ class Vocabularycet6(models.Model):
                                    null=True)  # Field name made lowercase.
 
     is_first_time = models.CharField(max_length=8, blank=True, null=True)
+    score = models.IntegerField(blank=True, null=True)
 
     class Meta:
         db_table = 'vocabularycet6'
